@@ -1,0 +1,349 @@
+<div class="content-wrapper pb-0" *ngIf="model">
+
+    <div class="row">
+
+        <div class="col-md-6 grid-margin stretch-card">
+
+            <div class="card">
+
+                <div class="card-body">
+
+                    <h4 class="card-title" translate>animpage.target-page</h4>
+
+                    <div class="form-group mb-0">
+
+                        <select
+                            class="form-control form-control-lg"
+                            [(ngModel)]="page"
+                            (change)="onPageChange()"
+                        >
+
+                            <option
+                                *ngFor="let page of pages"
+                                [ngValue]="page.pageId"
+                            >{{ page.title }}</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 grid-margin stretch-card">
+
+            <div class="card">
+
+                <div class="card-body pb-0">
+
+                    <div class="d-flex">
+
+                        <h4 class="card-title flex-fill" translate>animpage.action</h4>
+
+                        <a
+                            href="javascript:;"
+                            class="uninstall-link mr-3"
+                            (click)="unsubscribe()"
+                            *ngIf="hasSubscription()"
+                            translate
+                        >animpage.unsubscribe</a>
+
+                        <a
+                            href="javascript:;"
+                            class="uninstall-link"
+                            (click)="uninstall()"
+                            translate
+                        >animpage.uninstall</a>
+                    </div>
+
+                    <div class="row">
+
+                        <div class="col-md-6 grid-margin">
+
+                            <button
+                                type="button"
+                                class="flex-fill btn btn-secondary btn-block"
+                                [disabled]="isEqual(_modelDefault, model)"
+                                (click)="reset()"
+                                translate
+                            >animpage.reset</button>
+                        </div>
+
+                        <div class="col-md-6 grid-margin">
+
+                            <button
+                                type="button"
+                                class="flex-fill btn btn-block"
+                                [class.btn-primary]="!hasPaidOptions()"
+                                [class.btn-danger]="hasPaidOptions()"
+                                [disabled]="isEqual(modelDefault, model)"
+                                (click)="save()"
+                                translate
+                            >animpage.save</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+
+        <div class="col-md-6 grid-margin stretch-card">
+
+            <div class="card">
+
+                <div class="card-body">
+
+                    <h4 class="card-title" translate>animpage.on-page-enter</h4>
+
+                    <div class="form-group" [class.mb-0]="!model.inEffect">
+
+                        <label translate>animpage.effect</label>
+
+                        <select
+                            class="form-control form-control-lg"
+                            [(ngModel)]="model.inEffect"
+                            (change)="onValueChange()"
+                        >
+
+                            <option
+                                *ngFor="let effect of inEffects"
+                                [ngValue]="effect.effectId"
+                            >{{ effect.title }}</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group mb-0" *ngIf="model.inEffect">
+
+                        <label>Duration</label>
+
+                        <nouislider
+                            [connect]="true"
+                            [min]="100"
+                            [max]="3100"
+                            [(ngModel)]="model.inDuration"
+                            (change)="onValueChange()"
+                            [config]="{tooltips: { to: this.sliderTooltipFormatter }, step: 100, padding: [ 100, 100 ]}"
+                        ></nouislider>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 grid-margin stretch-card">
+
+            <div class="card">
+
+                <div class="card-body">
+
+                    <div class="d-flex flex-row">
+
+                        <h4 class="card-title flex-fill" translate>animpage.on-page-leave</h4>
+
+                        <div class="form-check form-check-flat mt-0 mb-0" style="height: 20px;">
+
+                            <label class="form-check-label">
+
+                                <input
+                                    type="checkbox"
+                                    class="form-check-input"
+                                    [(ngModel)]="model.sync"
+                                    (change)="onValueChange() ; startOutAnimation()"
+                                />
+
+                                {{ 'animpage.sync' | translate }}
+
+                                <i class="input-helper"></i></label>
+                        </div>
+                    </div>
+
+                    <div [class.sync]="model.sync" [class.effect]="model.outEffect">
+
+                        <div class="form-group" [class.mb-0]="!model.outEffect">
+
+                            <label translate>animpage.effect</label>
+
+                            <select
+                                class="form-control form-control-lg"
+                                [(ngModel)]="model.outEffect"
+                                (change)="startOutAnimation()"
+                            >
+
+                                <option
+                                    *ngFor="let effect of outEffects"
+                                    [ngValue]="effect.effectId"
+                                >{{ effect.title }}</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group mb-0" *ngIf="model.outEffect">
+
+                            <label>Duration</label>
+
+                            <nouislider
+                                [connect]="true"
+                                [min]="100"
+                                [max]="3100"
+                                [(ngModel)]="model.outDuration"
+                                (change)="startOutAnimation()"
+                                [config]="{tooltips: { to: this.sliderTooltipFormatter }, step: 100, padding: [ 100, 100 ]}"
+                            ></nouislider>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+
+        <div class="col-md-6 grid-margin stretch-card">
+
+            <div class="card">
+
+                <div class="card-body">
+
+                    <h4 class="card-title" translate>animpage.preview-in</h4>
+
+                    <div class="demo-image-frame">
+
+                        <img
+                            class="d-block w-100"
+                            #inDemoImg
+                            [src]="demoImg | trusted: 'url'"
+                        >
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 grid-margin stretch-card">
+
+            <div class="card">
+
+                <div class="card-body">
+
+                    <h4 class="card-title flex-fill" translate>animpage.preview-out</h4>
+
+                    <div class="demo-image-frame">
+
+                        <img
+                            class="d-block w-100"
+                            #outDemoImg
+                            [src]="demoImg | trusted: 'url'"
+                        >
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <p class="mb-4" translate>animpage.hint</p>
+</div>
+
+<ng-template #confirmUninstallModalTemplate>
+
+    <div class="modal-header">
+
+        <h4 class="modal-title pull-left" translate>animpage.uninstall-heading</h4>
+
+        <button
+            type="button"
+            class="close pull-right"
+            (click)="confirmUninstallModalRef.hide()"
+        >
+
+            <span>&times;</span>
+        </button>
+    </div>
+
+    <div class="modal-body" translate>animpage.uninstall-text</div>
+
+    <div class="modal-footer">
+
+        <button
+            type="button"
+            class="btn btn-link"
+            (click)="confirmUninstallModalRef.hide()"
+            translate
+        >animpage.cancel</button>
+
+        <button
+            type="button"
+            class="btn btn-primary"
+            (click)="uninstallConfirm()"
+            translate
+        >animpage.uninstall</button>
+    </div>
+</ng-template>
+
+<ng-template #subscriptionModalTemplate>
+
+    <div class="modal-header">
+
+        <h4 class="modal-title pull-left" translate>animpage.subscription-heading</h4>
+
+        <button
+            type="button"
+            class="close pull-right"
+            (click)="subscriptionModalRef.hide()"
+        >
+
+            <span>&times;</span>
+        </button>
+    </div>
+
+    <div class="modal-body" translate>animpage.subscription-text</div>
+
+    <div class="modal-footer">
+
+        <button
+            type="button"
+            class="btn btn-link"
+            (click)="subscriptionModalRef.hide()"
+            translate
+        >animpage.cancel</button>
+
+        <button
+            type="button"
+            class="btn btn-primary"
+            (click)="checkout()"
+            translate
+        >animpage.subscribe</button>
+    </div>
+</ng-template>
+
+<ng-template #confirmUnsubscribeModalTemplate>
+
+    <div class="modal-header">
+
+        <h4 class="modal-title pull-left" translate>animpage.unsubscribe-heading</h4>
+
+        <button
+            type="button"
+            class="close pull-right"
+            (click)="confirmUnsubscribeModalRef.hide()"
+        >
+
+            <span>&times;</span>
+        </button>
+    </div>
+
+    <div class="modal-body" translate>animpage.unsubscribe-text</div>
+
+    <div class="modal-footer">
+
+        <button
+            type="button"
+            class="btn btn-link"
+            (click)="confirmUnsubscribeModalRef.hide()"
+            translate
+        >animpage.cancel</button>
+
+        <button
+            type="button"
+            class="btn btn-primary"
+            (click)="unsubscribeConfirm()"
+            translate
+        >animpage.unsubscribe</button>
+    </div>
+</ng-template>

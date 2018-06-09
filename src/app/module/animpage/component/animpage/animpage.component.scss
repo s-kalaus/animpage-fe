@@ -1,0 +1,87 @@
+.noUi-horizontal .noUi-handle {
+    outline: none;
+
+    .noUi-tooltip {
+        padding: 0px 5px;
+        bottom: -35px;
+    }
+}
+
+.uninstall-link {
+    font-size: 12px;
+}
+
+.form-check {
+    user-select: none;
+
+    .form-check-label .input-helper:after {
+        top: 1px;
+    }
+}
+
+select {
+    height: 33.9px!important;
+    padding-top: 0!important;
+    padding-bottom: 0!important;
+}
+
+.sync {
+    position: relative;
+    pointer-events: none;
+    user-select: none;
+
+    * {
+        pointer-events: none;
+        user-select: none;
+    }
+
+    &:after {
+        content: '';
+        position: absolute;
+        left: -15px;
+        top: 0;
+        right: -15px;
+        bottom: 0;
+        opacity: 0.8;
+        background: #fff;
+        z-index: 1;
+    }
+
+    &.effect:after {
+        bottom: -45px;
+    }
+}
+
+.demo-image-frame {
+    position: relative;
+    overflow: hidden;
+}
+
+.demo-countdown {
+
+    &:after {
+        position: absolute;
+        font-size: 100px;
+        line-height: 100px;
+        width: 100px;
+        height: 100px;
+        text-align: center;
+        left: 0px;
+        right: 0px;
+        top: 0px;
+        bottom: 0px;
+        margin: auto;
+    }
+
+    &.step-1:after {
+        content: '1';
+    }
+
+    &.step-2:after {
+        content: '2';
+    }
+
+    &.step-3:after {
+        content: '3';
+    }
+}

@@ -1,0 +1,25 @@
+{
+    "animpage": {
+        "target-page": "Target Page",
+        "action": "Actions",
+        "uninstall": "Uninstall",
+        "reset": "Reset",
+        "save": "Save",
+        "on-page-enter": "On Page Enter",
+        "on-page-leave": "On Page Leave",
+        "sync": "Same as On Enter",
+        "effect": "Effect",
+        "preview-in": "On Enter Preview",
+        "preview-out": "On Leave Preview",
+        "cancel": "Cancel",
+        "unsubscribe": "Unsubscribe",
+        "uninstall-heading": "Uninstall App?",
+        "uninstall-text": "This will uninstall app and properly delete all related assets from your shop.",
+        "unsubscribe-heading": "Cancel Subscription?",
+        "unsubscribe-text": "This will cancel your current subscription. All additional features will be unavailable.",
+        "subscription-heading": "Payment Confirmation",
+        "subscription-text": "One of options you selected is available only via montlhy 5$ subscription. After clicking Checkout you will be redirected to Shopify Checkout page. If you do not want to unlock all additional features marked with \"*\", just press Cancel.",
+        "subscribe": "Checkout",
+        "hint": "* Features marked with asterics are available only via subscription. You will see payment confirmation when try to save page settings with one of these options seleted."
+    }
+}

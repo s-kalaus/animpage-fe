@@ -5,15 +5,15 @@ export function RestangularConfigFactory (RestangularProvider: any, authService:
 
     RestangularProvider.setBaseUrl(environment.apiUrl);
 
-    RestangularProvider.addFullRequestInterceptor((element: any, operation: any, path: any, url: any, headers: any, params: any)=> {
+    RestangularProvider.addFullRequestInterceptor((element: any, operation: any, path: any, url: any, headers: any, params: any) => {
 
         return {
-          params: params,
-          headers: Object.assign({
-              Authorization: 'Bearer ' + authService.token$.getValue()
-          }, headers),
-          element: element
-        }
+            params: params,
+            headers: Object.assign({
+                Authorization: 'Bearer ' + authService.token$.getValue()
+            }, headers),
+            element: element
+        };
     });
 
     RestangularProvider.addResponseInterceptor(function(data: any, operation: any, what: any, url: any, response: any, deferred: any) {

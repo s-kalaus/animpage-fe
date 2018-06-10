@@ -9,7 +9,7 @@ export class AnimationProvider {
         clearTimeout(this.timer);
         const el = element.nativeElement;
 
-        el.className = 'd-block w-100'
+        el.className = 'd-block w-100';
         el.style = 'visibility: ' + (isIn ? 'hidden' : 'visible');
 
         return series([

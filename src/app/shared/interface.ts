@@ -1,7 +1,7 @@
 export class Customer {
     customerId: number;
     name: string;
-    ext: string = '';
+    ext = '';
 }
 
 export class LoadingEvent {

@@ -23,7 +23,7 @@ export class LoadingService {
 
             this.storage[area].animated = true;
         }, delay);
-    };
+    }
 
     stop (area: string = 'global') {
 
@@ -41,7 +41,7 @@ export class LoadingService {
 
             this.storage[area].animated = false;
         }
-    };
+    }
 
     ensureKey (area: string) {
 

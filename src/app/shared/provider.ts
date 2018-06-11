@@ -1,3 +1,5 @@
+import { Injectable } from '@angular/core';
+
 import { environment } from '../../environments/environment';
 import { AuthService } from '../service/auth/auth.service';
 
@@ -58,4 +60,10 @@ export function RestangularConfigFactory (RestangularProvider: any, authService:
 
         return true;
     });
+}
+
+@Injectable()
+export class Restangular {
+    all (path: any): any { return { post: (arg1: any, arg2?: any) => {}, get: (arg1: any, arg2?: any) => {} }; }
+    one (path: any): any { return { customPUT: (arg1: any) => {}, remove: () => {} }; }
 }

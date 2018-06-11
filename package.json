@@ -2,12 +2,13 @@
   "name": "animpage-fe",
   "version": "0.0.0",
   "scripts": {
-    "ng": "ng",
-    "start": "ng serve --disable-host-check",
-    "build": "ng build --prod",
-    "test": "ng test",
-    "lint": "ng lint",
-    "e2e": "ng e2e"
+    "start": "npm run test-deactivate && ng serve --disable-host-check",
+    "build": "npm run test-deactivate && ng build --prod",
+    "test": "npm run test-activate && ng test --watch=false",
+    "lint": "npm run test-deactivate && ng lint",
+    "e2e": "npm run test-deactivate && ng e2e",
+    "test-activate": "sed -i -e 's/ngx-restangular/..\\/..\\/shared\\/provider/g' src/app/service/api/api.service.ts",
+    "test-deactivate": "sed -i -e 's/..\\/..\\/shared\\/provider/ngx-restangular/g' src/app/service/api/api.service.ts"
   },
   "private": true,
   "dependencies": {
@@ -54,7 +55,7 @@
     "jasmine-core": "~2.99.1",
     "jasmine-spec-reporter": "~4.2.1",
     "karma": "~1.7.1",
-    "karma-chrome-launcher": "~2.2.0",
+    "karma-phantomjs-launcher": "*",
     "karma-coverage-istanbul-reporter": "~2.0.0",
     "karma-jasmine": "~1.1.1",
     "karma-jasmine-html-reporter": "^0.2.2",

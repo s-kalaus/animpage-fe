@@ -15,6 +15,7 @@ import { SharedModule } from './shared/shared.module';
 import { RestangularConfigFactory } from './shared/provider';
 import { AppComponent } from './component/app/app.component';
 import { LoginComponent } from './component/login/login.component';
+import { PrivacyComponent } from './component/privacy/privacy.component';
 
 export function createTranslateLoader(http: HttpClient) {
 
@@ -29,7 +30,8 @@ export function tokenGetter() {
 @NgModule({
     declarations: [
         AppComponent,
-        LoginComponent
+        LoginComponent,
+        PrivacyComponent
     ],
     imports: [
         BrowserModule,

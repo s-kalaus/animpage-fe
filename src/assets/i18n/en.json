@@ -20,9 +20,6 @@
         "subscription-heading": "Payment Confirmation",
         "subscription-text": "One of options you selected is available only via montlhy 5$ subscription. After clicking Checkout you will be redirected to Shopify Checkout page. If you do not want to unlock all additional features marked with \"*\", just press Cancel.",
         "subscribe": "Checkout",
-        "hint": "* Features marked with asterics are available only via subscription. You will see payment confirmation when try to save page settings with one of these options seleted.",
-        "privacy": {
-            "title": "AnimPage Privacy Policy"
-        }
+        "hint": "* Features marked with asterics are available only via subscription. You will see payment confirmation when try to save page settings with one of these options seleted."
     }
 }

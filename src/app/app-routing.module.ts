@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { LoginComponent } from './component/login/login.component';
-import { PrivacyComponent } from './component/privacy/privacy.component';
 
 export const routes: Routes = [
     {
@@ -12,10 +11,6 @@ export const routes: Routes = [
     {
         path: 'login',
         component: LoginComponent
-    },
-    {
-        path: 'privacy',
-        component: PrivacyComponent
     }
 ];
 
